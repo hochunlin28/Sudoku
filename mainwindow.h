@@ -8,6 +8,8 @@
 #include <QTableView>
 #include <QHeaderView>
 #include <QPainter>
+#include <QString>
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;
@@ -25,9 +27,17 @@ public:
 private slots:
 
 
+    void on_play_clicked();
+
+    void on_clear_clicked();
+
+    void on_finishSudoku_clicked();
+
+    void on_solve_clicked();
+
 private:
     Ui::MainWindow *ui;
-    void paintEvent(QPaintEvent *);
+
 };
 
 #endif // MAINWINDOW_H

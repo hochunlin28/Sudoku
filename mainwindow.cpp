@@ -1,24 +1,25 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "sudoku.h"
+#include "sudokusol.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    /*QTableWidgetItem *item = tableWidget;
-    item->setBackgroundColor(QColor(50,60,10));*/
-
 
     ui->tableWidget->setColumnCount(9);
     ui->tableWidget->setRowCount(9);
     ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->verticalHeader()->setVisible(false);
     ui->tableWidget->viewport()->setStyleSheet("QTableview::Item{background-color:red}");
-    ui->tableWidget->horizontalHeader()->setDefaultSectionSize(31);
+    ui->tableWidget->horizontalHeader()->setDefaultSectionSize(37);
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
+    connect(ui->play,SIGNAL(clicked()),this,SLOT(on_play_clicked()));
+    connect(ui->clear,SIGNAL(clicked()),this,SLOT(on_clear_clicked()));
+    connect(ui->finishSudoku,SIGNAL(clicked()),this,SLOT(on_finishSudoku_clicked()));
 
 }
 
@@ -27,9 +28,97 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::paintEvent(QPaintEvent *){
-    QPainter painter(this);
-    painter.drawLine(10,10,80,60);
+
+
+
+void MainWindow::on_play_clicked()
+{
+    Sudoku su;
+    su.getQuestion();
+    su.setQuestion();
+    for(int i=0 ; i<Sudoku::sudokuSize ; ++i){
+        int row = i/9;
+        int column = i%9;
+        if(su.question[i] != 0){
+            QString str = QString::number(su.question[i]);
+            QTableWidgetItem *item = new QTableWidgetItem(str);
+            item->setFlags(Qt::ItemIsEnabled);
+            ui->tableWidget->setItem(row,column,item);
+        }
+    }
+
 }
 
+void MainWindow::on_clear_clicked()
+{
+        ui->tableWidget->clear();
+        ui->textEdit->clear();
+}
 
+void MainWindow::on_finishSudoku_clicked()
+{
+    Sudoku su;
+    int currentMap[Sudoku::sudokuSize];
+    for(int i=0 ; i<Sudoku::sudokuSize ; ++i){
+        int row = i/9;
+        int column = i%9;
+        QTableWidgetItem *item = ui->tableWidget->item(row,column);
+        if(item != NULL){
+            QString text = item->text();
+            currentMap[i] = text.toInt();
+        }
+        else{
+            currentMap[i] = 0;
+        }
+
+    }
+    su.setMap(currentMap);
+    if(su.isCorrect()){
+        ui->textEdit->setText("Correct!!!");
+    }
+    else{
+        ui->textEdit->setText("Wrong!!!");
+    }
+}
+
+void MainWindow::on_solve_clicked()
+{
+    SudokuSol su;
+    Sudoku question,ans;
+    int currentMap[Sudoku::sudokuSize];
+    for(int i=0 ; i<Sudoku::sudokuSize ; ++i){
+        int row = i/9;
+        int column = i%9;
+        QTableWidgetItem *item = ui->tableWidget->item(row,column);
+        if(item != NULL){
+            QString text = item->text();
+            currentMap[i] = text.toInt();
+        }
+        else{
+            currentMap[i] = 0;
+        }
+
+    }
+    question.setMap(currentMap);
+    su.backtracking(question,ans);
+    if(su.getIsSolvable()){
+        for(int i=0 ; i<Sudoku::sudokuSize ; ++i){
+            if(question.getElement(i) == 0){
+                int row = i/9;
+                int column = i%9;
+                QString str = QString::number(ans.getElement(i));
+                QTableWidgetItem *item = new QTableWidgetItem(str);
+                item->setFlags(Qt::ItemIsEnabled);
+                ui->tableWidget->setItem(row,column,item);
+                ui->textEdit->setText("solvable!!!");
+            }
+        }
+    }
+    else{
+        ui->textEdit->setText("unsolvable!!!");
+    }
+
+
+
+
+}
