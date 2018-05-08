@@ -55,7 +55,7 @@ void MainWindow::on_play_clicked()
 void MainWindow::on_clear_clicked()
 {
         ui->tableWidget->clear();
-        ui->textEdit->clear();
+
         ui->play->show();
         ui->solve->show();
 }
@@ -117,9 +117,9 @@ void MainWindow::on_solve_clicked()
                 QTableWidgetItem *item = new QTableWidgetItem(str);
                 item->setFlags(Qt::ItemIsEnabled);
                 ui->tableWidget->setItem(row,column,item);
-                QMessageBox::information(NULL,tr("question"),tr("solvable!"));
             }
         }
+        QMessageBox::information(NULL,tr("question"),tr("solvable!"));
         return;
     }
     else{

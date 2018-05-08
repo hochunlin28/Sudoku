@@ -10,6 +10,9 @@
 #include "sudoku.h"
 #include "QDebug"
 #include <QIcon>
+#include <QUrl>
+#include <QFile>
+#include <QTextStream>
 using namespace std;
 
 class Sudoku{

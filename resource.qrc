@@ -1,0 +1,12 @@
+<!DOCTYPE RCC>
+<RCC>
+        <qresource>
+                <file alias="question">resource/question.txt</file>
+                <file>resource/1.jpg</file>
+                <file>resource/2.png</file>
+                <file>resource/3.png</file>
+                <file>resource/4.png</file>
+                <file>resource/5.png</file>
+                <file>resource/6.jpg</file>
+	</qresource>
+</RCC>

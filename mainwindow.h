@@ -11,6 +11,7 @@
 #include <QString>
 #include <QDebug>
 #include <QMessageBox>
+#include <QPixmap>
 
 namespace Ui {
 class MainWindow;
