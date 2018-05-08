@@ -9,6 +9,7 @@
 #include "QString"
 #include "sudoku.h"
 #include "QDebug"
+#include <QIcon>
 using namespace std;
 
 class Sudoku{

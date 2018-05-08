@@ -13,10 +13,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setRowCount(9);
     ui->tableWidget->horizontalHeader()->setVisible(false);
     ui->tableWidget->verticalHeader()->setVisible(false);
-    ui->tableWidget->viewport()->setStyleSheet("QTableview::Item{background-color:red}");
     ui->tableWidget->horizontalHeader()->setDefaultSectionSize(37);
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->setStyleSheet("QTableWidget{gridline-color : black}");
     connect(ui->play,SIGNAL(clicked()),this,SLOT(on_play_clicked()));
     connect(ui->clear,SIGNAL(clicked()),this,SLOT(on_clear_clicked()));
     connect(ui->finishSudoku,SIGNAL(clicked()),this,SLOT(on_finishSudoku_clicked()));
@@ -33,6 +33,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_play_clicked()
 {
+    ui->play->hide();
+    ui->solve->hide();
     Sudoku su;
     su.getQuestion();
     su.setQuestion();
@@ -44,6 +46,7 @@ void MainWindow::on_play_clicked()
             QTableWidgetItem *item = new QTableWidgetItem(str);
             item->setFlags(Qt::ItemIsEnabled);
             ui->tableWidget->setItem(row,column,item);
+            ui->tableWidget->item(row,column)->setBackground(Qt::lightGray);
         }
     }
 
@@ -53,6 +56,8 @@ void MainWindow::on_clear_clicked()
 {
         ui->tableWidget->clear();
         ui->textEdit->clear();
+        ui->play->show();
+        ui->solve->show();
 }
 
 void MainWindow::on_finishSudoku_clicked()
@@ -73,12 +78,14 @@ void MainWindow::on_finishSudoku_clicked()
 
     }
     su.setMap(currentMap);
+
     if(su.isCorrect()){
-        ui->textEdit->setText("Correct!!!");
+        QMessageBox::information(NULL,tr("Your score"),tr("correct!"));
     }
     else{
-        ui->textEdit->setText("Wrong!!!");
+        QMessageBox::information(NULL,tr("Your score"),tr("Wrong!"));
     }
+    return;
 }
 
 void MainWindow::on_solve_clicked()
@@ -90,7 +97,7 @@ void MainWindow::on_solve_clicked()
         int row = i/9;
         int column = i%9;
         QTableWidgetItem *item = ui->tableWidget->item(row,column);
-        if(item != NULL){
+        if(item != NULL && item != 0){
             QString text = item->text();
             currentMap[i] = text.toInt();
         }
@@ -110,15 +117,13 @@ void MainWindow::on_solve_clicked()
                 QTableWidgetItem *item = new QTableWidgetItem(str);
                 item->setFlags(Qt::ItemIsEnabled);
                 ui->tableWidget->setItem(row,column,item);
-                ui->textEdit->setText("solvable!!!");
+                QMessageBox::information(NULL,tr("question"),tr("solvable!"));
             }
         }
+        return;
     }
     else{
-        ui->textEdit->setText("unsolvable!!!");
+        QMessageBox::information(NULL,tr("question"),tr("unsolvable!"));
+        return;
     }
-
-
-
-
 }

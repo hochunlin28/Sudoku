@@ -47,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>110</y>
+      <y>180</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -73,7 +73,7 @@
     <property name="geometry">
      <rect>
       <x>390</x>
-      <y>170</y>
+      <y>90</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -85,10 +85,10 @@
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>390</x>
       <y>220</y>
-      <width>104</width>
-      <height>70</height>
+      <width>191</width>
+      <height>31</height>
      </rect>
     </property>
    </widget>

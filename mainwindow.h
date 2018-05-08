@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QString>
 #include <QDebug>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;

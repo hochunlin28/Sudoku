@@ -79,7 +79,13 @@ bool Sudoku::isCorrect(){
         }
 
 void Sudoku::getQuestion(){
-    QFile file("question.in");
+    question = {1,1,1,1}
+   /* ifstream in(QUrl("qrc:/lfiles/resource/question.in"),ios::in);
+    for(i=0 ; i<Sudoku::sudokuSize ; ++i){
+        in >> question[i];
+    }
+   in.close();
+    QFile file(QUrl("qrc:/files/resource/question.in"));
     if(file.open(QIODevice::ReadOnly)){
         QTextStream in(&file);
         int count = 0;
@@ -94,7 +100,7 @@ void Sudoku::getQuestion(){
         }
         }
     }
-    file.close();
+    file.close();*/
 }
 
 void Sudoku::setQuestion(){

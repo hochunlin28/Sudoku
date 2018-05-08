@@ -39,3 +39,8 @@ FORMS += \
 
 DISTFILES += \
     question.in
+
+RESOURCES += \
+    res.qrc \
+    question.qrc \
+    res.qrc
