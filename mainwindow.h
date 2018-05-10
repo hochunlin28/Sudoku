@@ -12,6 +12,7 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QPalette>
 
 namespace Ui {
 class MainWindow;
@@ -36,6 +37,8 @@ private slots:
     void on_finishSudoku_clicked();
 
     void on_solve_clicked();
+
+    void on_start_clicked();
 
 private:
     Ui::MainWindow *ui;

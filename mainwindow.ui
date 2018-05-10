@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>637</width>
-    <height>391</height>
+    <width>639</width>
+    <height>415</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">border-image: url(:/resource/1.jpg);</string>
+   <string notr="true">background - color:red;</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="play">
@@ -43,7 +43,7 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">image: url(:/resource/6.jpg);</string>
+     <string notr="true"/>
     </property>
     <property name="lineWidth">
      <number>3</number>
@@ -111,6 +111,22 @@
     </property>
     <property name="styleSheet">
      <string notr="true">border-image: url(:/resource/6.jpg);</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="start">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>250</y>
+      <width>131</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/resource/7.gif);</string>
+    </property>
+    <property name="text">
+     <string>start</string>
     </property>
    </widget>
   </widget>

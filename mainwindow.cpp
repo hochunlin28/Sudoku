@@ -9,6 +9,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
+
+
+    QPalette pl1 = this->palette();
+    QPixmap pm = QPixmap(":/resource/1.jpg").scaled(this->size());
+    pl1.setBrush(this->backgroundRole(),QBrush(pm));
+    this->setPalette(pl1);
+
+
     ui->tableWidget->setColumnCount(9);
     ui->tableWidget->setRowCount(9);
     ui->tableWidget->horizontalHeader()->setVisible(false);
@@ -17,10 +26,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->tableWidget->setStyleSheet("QTableWidget{gridline-color : black}");
+
+    ui->tableWidget->hide();
+    ui->play->hide();
+    ui->solve->hide();
+    ui->finishSudoku->hide();
+    ui->clear->hide();
+    ui->widget->hide();
+
     connect(ui->play,SIGNAL(clicked()),this,SLOT(on_play_clicked()));
     connect(ui->clear,SIGNAL(clicked()),this,SLOT(on_clear_clicked()));
     connect(ui->finishSudoku,SIGNAL(clicked()),this,SLOT(on_finishSudoku_clicked()));
-
+    connect(ui->start,SIGNAL(clicked()),this,SLOT(on_start_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -126,4 +143,18 @@ void MainWindow::on_solve_clicked()
         QMessageBox::information(NULL,tr("question"),tr("unsolvable!"));
         return;
     }
+}
+
+void MainWindow::on_start_clicked()
+{
+    ui->start->hide();
+    ui->tableWidget->show();
+    ui->play->show();
+    ui->solve->show();
+    ui->finishSudoku->show();
+    ui->clear->show();
+    ui->widget->show();
+    QPalette pl = (this->palette());
+    pl.setColor(QPalette::Background,Qt::lightGray);
+    this->setPalette(pl);
 }
