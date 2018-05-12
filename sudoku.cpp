@@ -99,7 +99,7 @@ void Sudoku::getQuestion(){
 
 void Sudoku::setQuestion(){
     srand(time(NULL));
-    for(int i=0 ; i<10 ; ++i){
+    for(int i=0 ; i<50 ; ++i){
         question[rand()%81] = 0;
     }
     return;

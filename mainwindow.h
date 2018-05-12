@@ -13,6 +13,8 @@
 #include <QMessageBox>
 #include <QPixmap>
 #include <QPalette>
+#include <QLabel>
+#include <QMovie>
 
 namespace Ui {
 class MainWindow;
@@ -39,6 +41,8 @@ private slots:
     void on_solve_clicked();
 
     void on_start_clicked();
+
+    void on_setQuestion_clicked();
 
 private:
     Ui::MainWindow *ui;

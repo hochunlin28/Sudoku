@@ -20,8 +20,8 @@
    <widget class="QPushButton" name="play">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>20</y>
+      <x>370</x>
+      <y>10</y>
       <width>91</width>
       <height>71</height>
      </rect>
@@ -55,8 +55,8 @@
    <widget class="QPushButton" name="clear">
     <property name="geometry">
      <rect>
-      <x>530</x>
-      <y>110</y>
+      <x>450</x>
+      <y>90</y>
       <width>89</width>
       <height>81</height>
      </rect>
@@ -87,8 +87,8 @@
    <widget class="QPushButton" name="solve">
     <property name="geometry">
      <rect>
-      <x>390</x>
-      <y>110</y>
+      <x>360</x>
+      <y>160</y>
       <width>91</width>
       <height>81</height>
      </rect>
@@ -103,8 +103,8 @@
    <widget class="QWidget" name="widget" native="true">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>210</y>
+      <x>450</x>
+      <y>240</y>
       <width>181</width>
       <height>171</height>
      </rect>
@@ -127,6 +127,22 @@
     </property>
     <property name="text">
      <string>start</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="setQuestion">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>150</y>
+      <width>101</width>
+      <height>91</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-image: url(:/resource/8.png);</string>
+    </property>
+    <property name="text">
+     <string>setQuestion</string>
     </property>
    </widget>
   </widget>

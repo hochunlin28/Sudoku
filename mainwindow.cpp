@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setPalette(pl1);
 
 
+
+
     ui->tableWidget->setColumnCount(9);
     ui->tableWidget->setRowCount(9);
     ui->tableWidget->horizontalHeader()->setVisible(false);
@@ -33,11 +35,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->finishSudoku->hide();
     ui->clear->hide();
     ui->widget->hide();
+    ui->setQuestion->hide();
 
     connect(ui->play,SIGNAL(clicked()),this,SLOT(on_play_clicked()));
     connect(ui->clear,SIGNAL(clicked()),this,SLOT(on_clear_clicked()));
     connect(ui->finishSudoku,SIGNAL(clicked()),this,SLOT(on_finishSudoku_clicked()));
     connect(ui->start,SIGNAL(clicked()),this,SLOT(on_start_clicked()));
+    connect(ui->start,SIGNAL(clicked()),this,SLOT(on_setQuestion_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -51,7 +55,6 @@ MainWindow::~MainWindow()
 void MainWindow::on_play_clicked()
 {
     ui->play->hide();
-    ui->solve->hide();
     Sudoku su;
     su.getQuestion();
     su.setQuestion();
@@ -154,7 +157,22 @@ void MainWindow::on_start_clicked()
     ui->finishSudoku->show();
     ui->clear->show();
     ui->widget->show();
+    ui->setQuestion->show();
     QPalette pl = (this->palette());
     pl.setColor(QPalette::Background,Qt::lightGray);
     this->setPalette(pl);
 }
+
+void MainWindow::on_setQuestion_clicked()
+{
+    for(int i=0 ; i<Sudoku::sudokuSize ; ++i){
+        int row = i/9;
+        int column = i%9;
+        QTableWidgetItem *item = ui->tableWidget->item(row,column);
+        if(item != NULL){
+           item->setFlags(Qt::ItemIsEnabled);
+           ui->tableWidget->item(row,column)->setBackground(Qt::lightGray);
+        }
+    }
+}
+
